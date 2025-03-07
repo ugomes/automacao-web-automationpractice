@@ -3,6 +3,7 @@ package testWeb;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pages.HomePage;
 import pages.LoginPage;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,7 +15,11 @@ public class loginTest {
 
     @BeforeEach
     public void setup() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
         driver.get("http://www.automationpractice.pl/index.php");
         driver.manage().window().maximize();
 
