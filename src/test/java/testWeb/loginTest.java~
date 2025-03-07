@@ -46,6 +46,9 @@ public class loginTest {
     public void loginFalha() {
         LoginPage loginPage = new LoginPage(driver);
 
+        HomePage homePage = new HomePage(driver);
+
+
 
         loginPage.clickButtonSignIn();
 

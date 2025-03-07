@@ -1,0 +1,91 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class CadastroPage extends BasePage {
+    WebDriver driver;
+    public WebDriverWait wait;
+
+    public CadastroPage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    }
+
+    public By genderRadioButton = By.id("id_gender1");
+    public By firstNameInput = By.id("customer_firstname");
+    public By lastNameInput = By.id("customer_lastname");
+    public By emailInput = By.id("email");
+    public By passwordInput = By.id("passwd");
+    public By daysSelect = By.id("days");
+    public By monthsSelect = By.id("months");
+    public By yearsSelect = By.id("years");
+    public By registerButton = By.xpath("//span[contains(.,'Register')]");
+    public By successMessage = By.xpath("//p[@class='alert alert-success'][contains(.,'Your account has been created.')]");
+    public By emailInvalido =  By.xpath("//li[contains(.,'email is invalid.')]");
+    public By errorLastName = By.xpath("//li[contains(.,'lastname is required.')]");
+    public By errorFirstName = By.xpath("//li[contains(.,'firstname is required.')]");
+    public By errorEmail = By.xpath("//li[contains(.,'email is required.')]");
+    public By errorPassword = By.xpath("//li[contains(.,'passwd is required.')]");
+
+
+
+    public void selectGender() {
+    wait.until(ExpectedConditions.elementToBeClickable(genderRadioButton));
+    clicar(genderRadioButton);
+}
+public void enterFirstName(String firstName) {
+    escrever(firstNameInput, firstName);
+}
+public void enterLastName(String lastName) {
+    escrever(lastNameInput, lastName);
+}
+public void enterPassword(String password) {
+    escrever(passwordInput, password);
+}
+
+public void enterEmail(String email) {
+    driver.findElement(emailInput).clear();
+    escrever(emailInput, email);
+}
+public void selectDateOfBirth(String day, String month, String year) {
+    escrever(daysSelect, day);
+    escrever(monthsSelect, month);
+    escrever(yearsSelect, year);
+}
+
+public void clickRegister() {
+   wait.until(ExpectedConditions.elementToBeClickable(registerButton));
+   clicar(registerButton);
+}
+
+public String getSuccessMessage() {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(successMessage));
+    return driver.findElement(successMessage).getText();
+}
+public String emailInvalido() {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(emailInvalido));
+    return driver.findElement(emailInvalido).getText();
+    }
+
+    public List<String> getErrorMessages() {
+        List<By> erros = Arrays.asList(errorLastName, errorFirstName, errorEmail, errorPassword);
+
+        return erros.stream()
+                .filter(locator -> driver.findElements(locator).size() > 0)
+                .map(locator -> {
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+                    return driver.findElement(locator).getText();
+                })
+                .collect(Collectors.toList());
+
+    }
+}

@@ -1,0 +1,33 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+public class HomePage {
+    private final WebDriverWait wait;
+    WebDriver driver;
+    public By signInLink = By.xpath("//a[@class='login'][contains(.,'Sign in')]");
+    public By emailCreateInput = By.id("email_create");
+    public By createAccountButton = By.xpath("//span[contains(.,'Create an account')]");
+
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    public void clickSignIn() {
+        driver.findElement(signInLink).click();
+    }
+
+    public void enterEmail(String email) {
+        driver.findElement(emailCreateInput).sendKeys(email);
+    }
+
+    public void clickCreateAccount() {
+        driver.findElement(createAccountButton).click();
+    }
+}
+
