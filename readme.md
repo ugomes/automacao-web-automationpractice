@@ -7,17 +7,17 @@ Este projeto realiza testes automatizados das funcionalidades de login e cadastr
 Java: Linguagem de programação principal. Selenium: Framework para automação de testes em navegadores. JUnit 5: Framework para execução de testes. Maven: Gerenciador de dependências e build do projeto. Java Faker: Biblioteca para gerar dados fictícios, como nomes, emails, etc. 🚀 Funcionalidades Testadas
 
 Cadastro
-cadastroSucesso: Testa o cadastro de um novo usuário com dados válidos. 
-cadastroFalha: Testa o cadastro com um email já registrado. 
-cadastroCamposVazios: Testa o cadastro com campos obrigatórios em branco.
+Testa o cadastro de um novo usuário com dados válidos. 
+Testa o cadastro com um email já registrado. 
+Testa o cadastro com campos obrigatórios em branco.
 
 Login
-loginSucesso: Testa o login com credenciais válidas. 
-loginFalha: Testa o login com credenciais inválidas. 
-loginCampoPasswordVazio: Testa o login com o campo de senha em branco. 
-loginFalhaEmail: Testa o login com o campo de email em branco. 
-loginFalhaEmailInvalido: Testa o login com um email inválido. 
-loginFalhaSenhaInvalida: Testa o login com uma senha inválida.
+Testa o login com credenciais válidas. 
+Testa o login com credenciais inválidas. 
+Testa o login com o campo de senha em branco. 
+Testa o login com o campo de email em branco. 
+Testa o login com um email inválido. 
+Testa o login com uma senha inválida.
 
 🛠️ Pré-requisitos Antes de executar o projeto, certifique-se de ter instalado:
 
